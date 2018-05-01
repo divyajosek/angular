@@ -1,0 +1,46 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<app-header></app-header>
+<input type="text" #inputTxt><button (click)="myClick(inputTxt.value)">Search</button>
+<input type="text" [(ngModel)]="inputTxt1"><button (click)="myClick1()">Search</button>
+
+    {{inputTxt1}}
+<h1>Add Employee</h1>
+<!-- reference method
+<div>
+  Name :<input type="text" #name>
+</div>
+<div>
+  Age : <input type="number" #age (keyup.enter)="addEmp(name.value,age.value)">
+</div>-->
+<div>
+    Name :<input type="text" [(ngModel)]="newEmployee.name">
+  </div>
+  <div>
+    Age : <input type="number" [(ngModel)]="newEmployee.age" (keyup.enter)="addEmp()">
+</div>
+<div style="text-align:center">
+     <table>
+       <thead>
+         <tr>
+           <td>Name</td>
+           <td>Age</td>
+           <td>View</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let emp of employees" [ngClass]="{'selected' : emp.selected}">
+          <td>{{emp.name}}</td>
+          <td>{{emp.age}}</td>
+          <td><button (click)="selectEmployee(emp)">View Details</button></td>
+        </tr>
+      </tbody>
+     </table>
+  
+</div>
+
+<div *ngIf="selectedEmp">
+  <p>Name : {{selectedEmp.name}}</p>
+  <p>Age:  {{selectedEmp.age}}</p>
+</div>
+
+
