@@ -1,3 +1,7 @@
 tr.selected{
 background-color: yellow;
 }
+
+button.selected{
+    background-color: yellow;
+}

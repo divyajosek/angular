@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
+import {employee} from './model/employee';
 
-interface Employee{
+/*interface Employee{
   name:string;
   age:number;
   selected?:boolean;
-}
+}*/
 
 @Component({
   selector: 'app-root',
@@ -16,9 +17,11 @@ interface Employee{
 export class AppComponent {
     title = 'Angular 5 app';
     selectedEmp;
+    viewList=true;
+    viewAdd;
     inputTxt1="Initial Search";
 
-    employees:Array<Employee>=[{
+   /* employees:Array<Employee>=[{
       name : "divya",
       age :20
     },
@@ -26,8 +29,10 @@ export class AppComponent {
       name : "Annie",
       age :25
     }
-  ]
+  ]*/
 
+  employees:Array<employee>=[new employee('divya' , 20),new employee('joseph' , 20)]
+  
   clearAll(){
     this.employees.forEach(e=>e.selected=false)
   }
@@ -45,7 +50,17 @@ export class AppComponent {
   myClick1(){
     this.inputTxt1="modified";
   }
-
+  View(val){
+  if(val == "list"){
+    this.viewList=true;
+    this.viewAdd=false;
+  }
+  else if(val == "add"){
+    this.viewList=false;
+    this.viewAdd=true;
+  }
+  
+}
   /* Reference Method
 
   addEmp(nameVal,ageVal){
@@ -66,4 +81,9 @@ export class AppComponent {
     this.employees.push(
       this.newEmployee
     )}
+
+  deleteEmp(i){
+    this.employees.splice(i,1);
+
+  }
 }
