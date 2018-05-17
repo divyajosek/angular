@@ -1,1 +1,11 @@
-<h1>This is custom header</h1>
+
+<div>
+    <ul>
+        <li *ngFor="let menu of list;">
+            <a href="#">{{menu}}</a>
+        </li>
+    </ul>
+</div>
+<div *ngFor="let btn of buttonList;let i = index;">
+    <button [ngClass]="{'selected' : selectedBtnIndex === i}" (click)="buttonClick(i)">{{btn}}</button>
+</div>

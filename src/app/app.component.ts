@@ -17,9 +17,11 @@ import {employee} from './model/employee';
 export class AppComponent {
     title = 'Angular 5 app';
     selectedEmp;
-    viewList=true;
+    activeViewIndex=0;
     viewAdd;
+    menuList:Array<String>=['Home','Contacts','About'];
     inputTxt1="Initial Search";
+    buttonList:Array<string>=["View","Add"];
 
    /* employees:Array<Employee>=[{
       name : "divya",
@@ -50,16 +52,9 @@ export class AppComponent {
   myClick1(){
     this.inputTxt1="modified";
   }
-  View(val){
-  if(val == "list"){
-    this.viewList=true;
-    this.viewAdd=false;
-  }
-  else if(val == "add"){
-    this.viewList=false;
-    this.viewAdd=true;
-  }
-  
+
+  view(viewIndex){
+    this.activeViewIndex=viewIndex;  
 }
   /* Reference Method
 

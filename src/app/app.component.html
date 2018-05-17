@@ -1,13 +1,13 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<app-header></app-header>
+<app-header [list]="menuList" [buttonList]="buttonList" (onButtonClick)="view($event)"></app-header>
 <input type="text" #inputTxt><button (click)="myClick(inputTxt.value)">Search</button>
 <input type="text" [(ngModel)]="inputTxt1"><button (click)="myClick1()">Search</button>
 
     {{inputTxt1}} {{inputTxt.value}} 
-<div>
+<!--<div>
   <button (click)="View('list')" [ngClass]="{'selected' : viewList}">View Employee</button><button (click)="View('add')" [ngClass]="{'selected' : viewAdd}">Add Employee</button>
-</div>
-<div *ngIf="viewAdd">
+</div>-->
+<div *ngIf="activeViewIndex === 1">
   <h1>Add Employee</h1>
   <!-- reference method
   <div>
@@ -24,7 +24,7 @@
   </div>
   <div><button (click)="addEmp()">Add</button></div>
 </div>
-<div *ngIf="viewList">
+<div *ngIf="activeViewIndex === 0">
   <div style="text-align:center">
     <table>
       <thead>
