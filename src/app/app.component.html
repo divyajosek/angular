@@ -7,22 +7,8 @@
 <!--<div>
   <button (click)="View('list')" [ngClass]="{'selected' : viewList}">View Employee</button><button (click)="View('add')" [ngClass]="{'selected' : viewAdd}">Add Employee</button>
 </div>-->
-<div *ngIf="activeViewIndex === 1">
-  <h1>Add Employee</h1>
-  <!-- reference method
-  <div>
-    Name :<input type="text" #name>
-  </div>
-  <div>
-    Age : <input type="number" #age (keyup.enter)="addEmp(name.value,age.value)">
-  </div>-->
-  <div>
-      Name :<input type="text" [(ngModel)]="newEmployee.name">
-    </div>
-    <div>
-      Age : <input type="number" [(ngModel)]="newEmployee.age">
-  </div>
-  <div><button (click)="addEmp()">Add</button></div>
+<div>
+ <app-add-employee (onSubmit)="addEmp($event)" *ngIf="activeViewIndex === 1"></app-add-employee>
 </div>
 <div *ngIf="activeViewIndex === 0">
   <div style="text-align:center">
@@ -46,11 +32,7 @@
     </table>
  
 </div>
-
-<div *ngIf="selectedEmp">
- <p>Name : {{selectedEmp.name}}</p>
- <p>Age:  {{selectedEmp.age}}</p>
-</div>
+<app-employee-details [selectedEmp]="selectedEmp"></app-employee-details>
 </div>
 
 

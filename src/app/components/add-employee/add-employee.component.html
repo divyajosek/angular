@@ -1,0 +1,15 @@
+
+  <h1>Add Employee</h1>
+  <form #addForm="ngForm" (ngSubmit)="onAdd(addForm)" novalidate>
+      <div>
+        Name :<input #employeeName="ngModel" type="text" [(ngModel)]="newEmployee.name" name="name" required minlength="3"> 
+        <span *ngIf="employeeName.errors?.required">This field is required</span>
+        <span *ngIf="employeeName.errors?.minlength">This field requires {{employeeName.errors.minlength.requiredLength}}</span>
+      </div>
+      <div>
+        Age : <input #age="ngModel" type="number" [(ngModel)]="newEmployee.age" name="age">
+    </div>
+    <div><button type="submit">Add</button></div>
+  </form>
+
+

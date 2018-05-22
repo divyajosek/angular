@@ -1,11 +1,14 @@
+<div id="container">
+    <div>
+        <ul>
+            <li *ngFor="let menu of list;">
+                <a href="#">{{menu}}</a>
+            </li>
+        </ul>
+    </div>
+    <div id="listB"> 
+        <button *ngFor="let btn of buttonList;let i = index;"  [ngClass]="{'selected' : selectedBtnIndex === i}" (click)="buttonClick(i)">{{btn}}</button>
+    </div>
+    <div >Total No of Employees {{employeeCount}}</div>
+</div>
 
-<div>
-    <ul>
-        <li *ngFor="let menu of list;">
-            <a href="#">{{menu}}</a>
-        </li>
-    </ul>
-</div>
-<div *ngFor="let btn of buttonList;let i = index;">
-    <button [ngClass]="{'selected' : selectedBtnIndex === i}" (click)="buttonClick(i)">{{btn}}</button>
-</div>

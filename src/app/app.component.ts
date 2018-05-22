@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import {employee} from './model/employee';
+import {EmployeeService} from "./employee.service";
+
+import {NgForm} from '@angular/forms';
 
 /*interface Employee{
   name:string;
@@ -19,9 +22,20 @@ export class AppComponent {
     selectedEmp;
     activeViewIndex=0;
     viewAdd;
+    employees:Array<employee>=[];
+
     menuList:Array<String>=['Home','Contacts','About'];
     inputTxt1="Initial Search";
     buttonList:Array<string>=["View","Add"];
+
+    constructor(private service:EmployeeService){
+
+    }
+
+    ngOnInit() {
+      const empObser = this.service.getEmployees();
+      empObser.subscribe((res:Array<employee>) => {this.employees = res});
+    }
 
    /* employees:Array<Employee>=[{
       name : "divya",
@@ -33,7 +47,7 @@ export class AppComponent {
     }
   ]*/
 
-  employees:Array<employee>=[new employee('divya' , 20),new employee('joseph' , 20)]
+  //employees:Array<employee>=[new employee('divya' , 20),new employee('joseph' , 20)]
   
   clearAll(){
     this.employees.forEach(e=>e.selected=false)
@@ -68,17 +82,17 @@ export class AppComponent {
 
   }*/
 
-  newEmployee={
-    name:'',
-    age:null
-  };
-  addEmp(){
+ 
+  addEmp(employee){
+    alert("hello");
     this.employees.push(
-      this.newEmployee
-    )}
+      employee
+    )
+  this.service.employeeListEvent.next(this.employees);
+  }
 
   deleteEmp(i){
     this.employees.splice(i,1);
-
+    this.service.employeeListEvent.next(this.employees);
   }
 }
